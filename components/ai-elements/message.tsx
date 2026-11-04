@@ -332,6 +332,11 @@ export const MessageResponse = memo(
       )}
       plugins={streamdownPlugins}
       {...props}
+      components={{
+        // Streamdown wraps images in a <div>, which is invalid inside <p>.
+        p: ({ node: _node, ...pProps }) => <div {...pProps} />,
+        ...props.components,
+      }}
     />
   ),
   (prevProps, nextProps) =>
